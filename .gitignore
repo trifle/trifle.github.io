@@ -1,6 +1,0 @@
-Drop Box
-.DS_Store
-.localized
-__pycache__
-poetry.lock
-pyproject.toml

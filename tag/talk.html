@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>A Trifle - Talk tag</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <meta content="width=device-width,minimum-scale=1" name="viewport">
+
+<link rel="stylesheet" href="/theme/css/pygment.css" />
+
+<style>
+
+  :root {
+    --mono-font: "Fira Code", Menlo, San Francisco Mono, Monaco, "Consolas", "Lucida Console", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+    --sans-font: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif
+  }
+
+  body {
+    /*margin: 0 auto;*/
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5;
+    font-size: 1rem;
+    font-family: var(--sans-font)
+  }
+
+  pre {background: #f8f9fa; padding: 10px;white-space: pre-wrap;word-break: keep-all}
+  code {background: #f8f9fa;}
+
+
+  .only-print {
+    display: none
+  }
+
+  a {
+    /*color: #006d77;*/
+    color: #007bf2;
+    /*color: #8d99ae;*/
+    /*color: #000000;*/
+    /*background-color: #edf2f4;*/
+    /*padding: .3em;*/
+    padding: .2em .2em .2em 0em;
+    text-decoration-skip-ink: auto;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #006d77;
+    background-color: #edf2f4;
+    /*text-decoration: underline;*/
+    /*font-weight: 700;*/
+  }
+
+  ul {
+    margin: 1rem 0
+  }
+
+
+  ul ul {
+    margin: 0
+  }
+
+  /*p {padding: 0; margin: 0;}*/
+  p {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  h3 {
+    padding: 0 0 20px 0;
+    margin: 0;
+  }
+
+  h4 {
+    margin: 30px 0 0 0;
+  }
+
+  .small,
+  small {
+    font-size: 14px
+  }
+
+  body,
+  h1 a {
+    color: #111
+  }
+
+  .active a {
+    font-weight: 800;
+  }
+
+  h1,
+  h2 {
+    margin-bottom: .5rem;
+    line-height: 1.25;
+    font-weight: 600
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    letter-spacing: .009em
+  }
+
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    clear: both;
+  }
+
+  ul.menu>li {padding-right: 1em;}
+
+  .limiter {
+    max-width: 500px;
+    padding-left: 20px;
+    padding-right: 20px;
+/*    margin-left: auto;
+    margin-right: auto*/
+  }
+
+  img {
+    max-width: 550px;
+    width: 100%;
+  }
+
+  .pad2y {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .main {
+  float: left;
+  background-color: #f0f0f0;
+  }
+
+  .sidebar {
+    float: left;
+  }
+
+  .writing {
+    display: grid;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    grid-template-columns: 1fr min-content
+  }
+
+  .writing a {
+    font-weight: 500;
+    letter-spacing: -.015em
+  }
+
+  .article {}
+
+  .note a {
+    font-weight: 500;
+    letter-spacing: -.015em
+  }
+
+  .writing a {
+    font-weight: 500;
+    letter-spacing: -.015em
+  }
+
+  .writing>div {}
+
+  .writing time {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*display: unset;*/
+/*    font-size: 0.9em;
+    padding: 0;
+    margin: 0;*/
+    /*font-size: 14px;*/
+    /*font-weight: 100px;*/
+    /*line-height: 1em;*/
+    /*background-color: #f8f9fa;*/
+    /*font-weight: 500;*/
+    text-align: right;
+    color: rgb(3, 27, 78);
+    /*padding: .2em;*/
+  }
+
+  .sidebar ul {
+    margin:  3em 0em;
+    list-style: none;
+  }
+
+  .header-wrap {}
+
+  .header-wrap {
+    /*border-bottom: 1px solid #eee;*/
+    /*background-color: #f8f9fa;*/
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+
+
+  @media screen and (max-width: 500px) {
+      .writing time {
+      display: none;
+    }  
+
+    .writing {
+      grid-template-columns: 1fr;
+      grid-row-gap: 5;
+    }
+    
+    .sitetitle {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .limiter {
+      width: auto;
+    }
+
+    .writing div {
+      white-space: normal;
+    }
+
+
+
+.sidebar {
+  clear: both;
+}
+
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    clear: both;
+  }
+  .sidebar li {
+    padding-right: 1em;
+  }
+  }
+
+
+/*---------------*/
+/*---------------*/
+
+</style>
+</head>
+
+
+<body class="post">
+<div style="position:relative">
+
+<nav class="header-wrap">
+            <div class="header nu limiter no-print">
+            <ul class="menu">
+            <li><a href="/">News</a></li>
+            <li><a href="/pages/publications.html">Publications</a></li>
+            <!-- <li><a href="/notes">Notes</a></li> -->
+            <li class="active"><a href="/tags.html">Tags</a> » <a href="/tag/talk.html">Talk</a></li>
+            <li><a href="/pages/about.html">About</a></li></ul>
+</nav>
+
+<div class="pad2y limiter content">
+    <h3># Talk</h3>
+    <div class="writing nu">
+        <div>
+            <a href="/talk-simulating-ideological-disintegration.html" title="Permalink to Talk: Simulating Ideological Disintegration">Talk: Simulating Ideological Disintegration</a>
+        </div><time class="published" datetime="2021-06-22T00:00:00+02:00"> Tue 22 June 2021 </time>
+</div>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

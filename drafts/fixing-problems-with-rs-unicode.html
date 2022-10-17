@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>A Trifle - Fixing Problems with R's Unicode</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <meta content="width=device-width,minimum-scale=1" name="viewport">
+
+
+
+
+    <meta name="tags" content="r" />
+    <meta name="tags" content="utf" />
+
+
+<link rel="stylesheet" href="/theme/css/pygment.css" />
+
+<style>
+
+  :root {
+    --mono-font: "Fira Code", Menlo, San Francisco Mono, Monaco, "Consolas", "Lucida Console", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+    --sans-font: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif
+  }
+
+  body {
+    /*margin: 0 auto;*/
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5;
+    font-size: 1rem;
+    font-family: var(--sans-font)
+  }
+
+  pre {background: #f8f9fa; padding: 10px;white-space: pre-wrap;word-break: keep-all}
+  code {background: #f8f9fa;}
+
+
+  .only-print {
+    display: none
+  }
+
+  a {
+    /*color: #006d77;*/
+    color: #007bf2;
+    /*color: #8d99ae;*/
+    /*color: #000000;*/
+    /*background-color: #edf2f4;*/
+    /*padding: .3em;*/
+    padding: .2em .2em .2em 0em;
+    text-decoration-skip-ink: auto;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #006d77;
+    background-color: #edf2f4;
+    /*text-decoration: underline;*/
+    /*font-weight: 700;*/
+  }
+
+  ul {
+    margin: 1rem 0
+  }
+
+
+  ul ul {
+    margin: 0
+  }
+
+  /*p {padding: 0; margin: 0;}*/
+  p {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  h3 {
+    padding: 0 0 20px 0;
+    margin: 0;
+  }
+
+  h4 {
+    margin: 30px 0 0 0;
+  }
+
+  .small,
+  small {
+    font-size: 14px
+  }
+
+  body,
+  h1 a {
+    color: #111
+  }
+
+  .active a {
+    font-weight: 800;
+  }
+
+  h1,
+  h2 {
+    margin-bottom: .5rem;
+    line-height: 1.25;
+    font-weight: 600
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    letter-spacing: .009em
+  }
+
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    clear: both;
+  }
+
+  ul.menu>li {padding-right: 1em;}
+
+  .limiter {
+    max-width: 500px;
+    padding-left: 20px;
+    padding-right: 20px;
+/*    margin-left: auto;
+    margin-right: auto*/
+  }
+
+  img {
+    max-width: 550px;
+    width: 100%;
+  }
+
+  .pad2y {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .main {
+  float: left;
+  background-color: #f0f0f0;
+  }
+
+  .sidebar {
+    float: left;
+  }
+
+  .writing {
+    display: grid;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    grid-template-columns: 1fr min-content
+  }
+
+  .writing a {
+    font-weight: 500;
+    letter-spacing: -.015em
+  }
+
+  .article {}
+
+  .note a {
+    font-weight: 500;
+    letter-spacing: -.015em
+  }
+
+  .writing a {
+    font-weight: 500;
+    letter-spacing: -.015em
+  }
+
+  .writing>div {}
+
+  .writing time {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*display: unset;*/
+/*    font-size: 0.9em;
+    padding: 0;
+    margin: 0;*/
+    /*font-size: 14px;*/
+    /*font-weight: 100px;*/
+    /*line-height: 1em;*/
+    /*background-color: #f8f9fa;*/
+    /*font-weight: 500;*/
+    text-align: right;
+    color: rgb(3, 27, 78);
+    /*padding: .2em;*/
+  }
+
+  .sidebar ul {
+    margin:  3em 0em;
+    list-style: none;
+  }
+
+  .header-wrap {}
+
+  .header-wrap {
+    /*border-bottom: 1px solid #eee;*/
+    /*background-color: #f8f9fa;*/
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+
+
+  @media screen and (max-width: 500px) {
+      .writing time {
+      display: none;
+    }  
+
+    .writing {
+      grid-template-columns: 1fr;
+      grid-row-gap: 5;
+    }
+    
+    .sitetitle {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .limiter {
+      width: auto;
+    }
+
+    .writing div {
+      white-space: normal;
+    }
+
+
+
+.sidebar {
+  clear: both;
+}
+
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    clear: both;
+  }
+  .sidebar li {
+    padding-right: 1em;
+  }
+  }
+
+
+/*---------------*/
+/*---------------*/
+
+</style>
+</head>
+
+
+<body class="post">
+<div style="position:relative">
+
+<nav class="header-wrap">
+            <div class="header nu limiter no-print">
+            <ul class="menu">
+            <li class="sitetitle">Pascal Jürgens</li>
+            <li><a href="/">News</a></li>
+            <li><a href="/pages/publications.html">Publications</a></li>
+            <!-- <li><a href="/notes">Notes</a></li> -->
+            <li><a href="/tags.html">Tags</a></li>
+            <li><a href="/pages/about.html">About</a></li></ul>
+</nav>
+
+
+<div class="main">
+
+<div class="pad2y limiter content">
+    <h3><a href="/drafts/fixing-problems-with-rs-unicode.html" rel="bookmark"
+         title="Permalink to Fixing Problems with R's Unicode">Fixing Problems with R's Unicode</a></h3>
+    <div class="nu">
+    <p>The R language has developed a rich ecosystem that extends far beyond its original focus on statistics. But there is one area with very persistent problems: Text encoding. Because Emoji are now common in just about any context (😱), many users have complex textual datasets and need to explicitly work with characters beyond the normal english (<em>ASCII</em>) set. Ignoring proper text handling in R (e.g. by deleting special characters) is no longer an option.</p>
+<p>In this post, I'll do a deep dive into some common but wrong ways to handle unicode in R, show examples, explain where they come from and how to fix them.</p>
+<p><strong>SPOILER</strong>: If you're in a hurry, <a href="">here</a> is a python script that will fix your occurrences of <code>&lt;ed&gt;&lt;a0&gt;&lt;bd&gt;&lt;ed&gt;&lt;b8&gt;&lt;a1&gt;</code> or <code>\xed\xa0\xbd\xed\xb8\xa1</code> and turn them into proper UTF-8. Lightning-fast. If you're interested in understanding why you even have this problem, read on.</p>
+<h2>Understanding unicode (1)</h2>
+<p>The first thing we need to know about <a href="https://en.wikipedia.org/wiki/Unicode">unicode</a> is that it's in fact a special library of characters (i.e. roman letters <code>L</code>, composite symbols as used in e.g. arabic <code>بۉ</code> or korean writing <code>한</code> systems, picture-based characters as in chinese hanzi <code>漢</code> and emoji <code>🙂</code>) along with descriptions, definitions and a unique number, and also a series of different systems to store text in binary (i.e. machine-readable) form. Each of these <em>encodings</em> basically defines a table (or set of rules) for translating a character (such as the letter <code>L</code>) into a series of bits. There are three large families: <code>UTF-8</code>, <code>UTF-16</code> and <code>UTF-32</code>. These differ primarily in the amount of memory that they reserve for each character. UTF-32 is the largest encoding and always uses 32 bits (or four bytes). If you know that a text file is encoded in UTF-32, it's easy to decode: Just take consecutive chunks of four bytes and look them up in the encoding table. For the umlaut letter "o", this is:</p>
+<p><code>ö -&gt; &lt;0x000000F6&gt; representing the four bytes 00 00 00 F6</code></p>
+<p>The smaller variants UTF-16 and (the most widely used) UTF-8 are a bit more complex. In contrast to UTF-32, which is a <em>fixed-width</em> encoding, they can use a varying amount of bits to encode characters (making them a <em>varying-width</em> encoding).</p>
+<p><code>ö -&gt; 0x00F6 representing the two bytes 00 F6</code></p>
+<p>A very important implication of this translation is that <em>there is no easy way to go backwards</em> - from bits to characters - unless you happen to known which encoding (i.e. translation table) was used. If you're looking at a series of bits, you cannot deterministically know which encoding was used to produce it.</p>
+<h2>When things go wrong</h2>
+<p>Ideally, we want to open a text document and see it as it was written - with all characters intact (and perhaps with a columnar structure, if it's a CSV or TSV file). But sometimes what we see is this:</p>
+<p><img alt="text file opened with wrong encoding in editor" class="image-process-article-image" src="/images/sublime-broken-utf.png"></p>
+<p>I've opened this file in a <a href="https://www.sublimetext.com/">text editor</a>, and it's obviously broken in some way. The file is a CSV, and some parts of the lines appear to be intellegible: There is an ID at the beginning, followed by three columns with values (NA and 0). But the rest is a weird mix of special characters such as <code>Ø</code> and some things that are evidently <em>not</em> normal characters <code>&lt;0xa0&gt;</code>.</p>
+<p>The </p>
+<p><img alt="text file opened with wrong encoding in editor" class="image-process-article-image" src="/images/sublime-arabic-utf.png"></p>
+<p><code>0xED B0 F4</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">what</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;called with: </span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+
+<ol>
+<li>ABC</li>
+<li>DEF LOREM</li>
+</ol>
+<blockquote>
+<p>Quote quote-a-lot. Find out who you are and do it on purpose.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+
+<div class="sidebar">
+<div class="pad2y limiter content">
+  <ul>
+ 
+ <li>
+    <time class="published" datetime="2021-03-26T08:55:00+01:00">
+      Fri 26 March 2021
+    </time>
+    </li>
+<!--         <address class="vcard author">
+      By           <a class="url fn" href="/author/pascal-jurgens.html">Pascal Jürgens</a>
+    </address>
+ -->
+    <li>
+        Category <a href="/category/memo.html">memo</a>
+        </li>
+    <li>
+        Tags
+            <a href="/tag/r.html">r</a>
+            <a href="/tag/utf.html">utf</a>
+        </li>
+  </ul>
+
+</div>
+</div>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

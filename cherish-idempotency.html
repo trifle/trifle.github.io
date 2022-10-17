@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>A Trifle - Cherish Idempotency</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <meta content="width=device-width,minimum-scale=1" name="viewport">
+
+
+
+
+    <meta name="tags" content="architecture" />
+    <meta name="tags" content="Python" />
+    <meta name="tags" content="R" />
+
+
+<link rel="stylesheet" href="/theme/css/pygment.css" />
+
+<style>
+
+  :root {
+    --mono-font: "Fira Code", Menlo, San Francisco Mono, Monaco, "Consolas", "Lucida Console", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+    --sans-font: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif
+  }
+
+  body {
+    /*margin: 0 auto;*/
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5;
+    font-size: 1rem;
+    font-family: var(--sans-font)
+  }
+
+  pre {background: #f8f9fa; padding: 10px;white-space: pre-wrap;word-break: keep-all}
+  code {background: #f8f9fa;}
+
+
+  .only-print {
+    display: none
+  }
+
+  a {
+    /*color: #006d77;*/
+    color: #007bf2;
+    /*color: #8d99ae;*/
+    /*color: #000000;*/
+    /*background-color: #edf2f4;*/
+    /*padding: .3em;*/
+    padding: .2em .2em .2em 0em;
+    text-decoration-skip-ink: auto;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #006d77;
+    background-color: #edf2f4;
+    /*text-decoration: underline;*/
+    /*font-weight: 700;*/
+  }
+
+  ul {
+    margin: 1rem 0
+  }
+
+
+  ul ul {
+    margin: 0
+  }
+
+  /*p {padding: 0; margin: 0;}*/
+  p {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  h3 {
+    padding: 0 0 20px 0;
+    margin: 0;
+  }
+
+  h4 {
+    margin: 30px 0 0 0;
+  }
+
+  .small,
+  small {
+    font-size: 14px
+  }
+
+  body,
+  h1 a {
+    color: #111
+  }
+
+  .active a {
+    font-weight: 800;
+  }
+
+  h1,
+  h2 {
+    margin-bottom: .5rem;
+    line-height: 1.25;
+    font-weight: 600
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    letter-spacing: .009em
+  }
+
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    clear: both;
+  }
+
+  ul.menu>li {padding-right: 1em;}
+
+  .limiter {
+    max-width: 500px;
+    padding-left: 20px;
+    padding-right: 20px;
+/*    margin-left: auto;
+    margin-right: auto*/
+  }
+
+  img {
+    max-width: 550px;
+    width: 100%;
+  }
+
+  .pad2y {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .main {
+  float: left;
+  background-color: #f0f0f0;
+  }
+
+  .sidebar {
+    float: left;
+  }
+
+  .writing {
+    display: grid;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    grid-template-columns: 1fr min-content
+  }
+
+  .writing a {
+    font-weight: 500;
+    letter-spacing: -.015em
+  }
+
+  .article {}
+
+  .note a {
+    font-weight: 500;
+    letter-spacing: -.015em
+  }
+
+  .writing a {
+    font-weight: 500;
+    letter-spacing: -.015em
+  }
+
+  .writing>div {}
+
+  .writing time {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*display: unset;*/
+/*    font-size: 0.9em;
+    padding: 0;
+    margin: 0;*/
+    /*font-size: 14px;*/
+    /*font-weight: 100px;*/
+    /*line-height: 1em;*/
+    /*background-color: #f8f9fa;*/
+    /*font-weight: 500;*/
+    text-align: right;
+    color: rgb(3, 27, 78);
+    /*padding: .2em;*/
+  }
+
+  .sidebar ul {
+    margin:  3em 0em;
+    list-style: none;
+  }
+
+  .header-wrap {}
+
+  .header-wrap {
+    /*border-bottom: 1px solid #eee;*/
+    /*background-color: #f8f9fa;*/
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+
+
+  @media screen and (max-width: 500px) {
+      .writing time {
+      display: none;
+    }  
+
+    .writing {
+      grid-template-columns: 1fr;
+      grid-row-gap: 5;
+    }
+    
+    .sitetitle {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .limiter {
+      width: auto;
+    }
+
+    .writing div {
+      white-space: normal;
+    }
+
+
+
+.sidebar {
+  clear: both;
+}
+
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    clear: both;
+  }
+  .sidebar li {
+    padding-right: 1em;
+  }
+  }
+
+
+/*---------------*/
+/*---------------*/
+
+</style>
+</head>
+
+
+<body class="post">
+<div style="position:relative">
+
+<nav class="header-wrap">
+            <div class="header nu limiter no-print">
+            <ul class="menu">
+            <li class="sitetitle">Pascal Jürgens</li>
+            <li><a href="/">News</a></li>
+            <li><a href="/pages/publications.html">Publications</a></li>
+            <!-- <li><a href="/notes">Notes</a></li> -->
+            <li><a href="/tags.html">Tags</a></li>
+            <li><a href="/pages/about.html">About</a></li></ul>
+</nav>
+
+
+<div class="main">
+
+<div class="pad2y limiter content">
+    <h3><a href="/cherish-idempotency.html" rel="bookmark"
+         title="Permalink to Cherish Idempotency">Cherish Idempotency</a></h3>
+    <div class="nu">
+    <p><em>Idempotent</em> means that a program does not change the final output, even if run multiple times. Try to write idempotent code, it will make your life much easier and prevent errors you didn't know you had!</p>
+<h4>Example</h4>
+<p>Imagine that you collected a bunch of comments from a social media site. You now want to figure out how many of those contain references to "climate". Simple enough, right?</p>
+<p>Let's say the raw data looks like this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">texts</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;As a climate-saving cloud hugger, I love guerilla gardening!&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Now you want to split individual words to gather counts. And you also want to remove irrelevant characters such as punctuation. You write the following code:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
+<span class="c1"># Regular expression to find puctuation</span>
+<span class="n">p_rx</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[,.-]&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">split_words</span><span class="p">(</span><span class="n">strings</span><span class="p">):</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">strings</span><span class="p">:</span>
+        <span class="c1"># Split text string into individual words</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="c1"># Apply regular expression to remove</span>
+        <span class="c1"># punctuation</span>
+        <span class="n">cleaned</span> <span class="o">=</span> <span class="p">[</span><span class="n">p_rx</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">]</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">cleaned</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">output</span>
+</code></pre></div>
+
+<p>Now what's the problem? You might have spotted it already: The function <code>split_words</code> is not <em>idempotent</em>, meaning it will give different results when we apply it multiple times. The first run results in this result:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">split_words</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">result</span>
+<span class="p">[</span><span class="s1">&#39;As&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;climate saving&#39;</span><span class="p">,</span> <span class="s1">&#39;cloud&#39;</span><span class="p">,</span> <span class="s1">&#39;hugger &#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;love&#39;</span><span class="p">,</span> <span class="s1">&#39;guerilla&#39;</span><span class="p">,</span> <span class="s1">&#39;gardening!&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+<p>But if we pass that result into the same function once more, we get:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">split_words</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;As&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;climate&#39;</span><span class="p">,</span> <span class="s1">&#39;saving&#39;</span><span class="p">,</span> <span class="s1">&#39;cloud&#39;</span><span class="p">,</span> <span class="s1">&#39;hugger&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;love&#39;</span><span class="p">,</span> <span class="s1">&#39;guerilla&#39;</span><span class="p">,</span> <span class="s1">&#39;gardening!&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+<p>In the first run, 'climate-saving' counds as a single word which is not separated. But then, we remove the dash and replace it with a space! In the second run, this gets picked up by <code>split(' ')</code> and is separated. The problem might seem trivial, but is quite frequent in data cleaning: If we want to count all appearances of the word "climate", the first run yields 0 cases (because it's still a composite with the dash), while the second run yields 1 case.</p>
+<h4>Doing it right</h4>
+<p>We can fix our example by simply swapping the operations: First replace, then split. Or we could simply combine them: Split on either spaces or dashes. </p>
+<p>In real work, interdependencies are often less obvious, for example if patterns span multiple characters. When the data processing pipelines become very long, it may be unfeasible to have <em>individually idempotent</em> functions in them. In that case, the best strategy is to have encapsulated code sections that perform complete end-to-end analyses, beginning from the raw data. This is one of the main advantages of the <a href="https://www.tidyverse.org/">R Tidyverse</a>: It encourages writing end-to-end pipes instead of many intermediate steps (which would leave intermediate variables lying around and invite multiple transformations).</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Instead of intermediate variables:</span>
+<span class="n">selection</span> <span class="o">&lt;-</span> <span class="n">data</span> <span class="o">%&gt;%</span> <span class="nf">select</span><span class="p">(</span><span class="s">&#39;text&#39;</span><span class="p">)</span>
+<span class="n">cleaned</span> <span class="o">&lt;-</span> <span class="n">selection</span> <span class="o">%&gt;%</span> <span class="nf">mutate</span><span class="p">(</span>
+    <span class="n">text</span><span class="o">=</span><span class="nf">str_replace</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="c1"># Better put everything in a single pipe</span>
+<span class="n">cleaned</span> <span class="o">&lt;-</span> <span class="n">data</span> <span class="o">%&gt;%</span> 
+    <span class="nf">select</span><span class="p">(</span><span class="s">&#39;text&#39;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    <span class="nf">mutate</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="nf">str_replace</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">))</span>
+</code></pre></div>
+
+<h4>Data collection</h4>
+<p>Idempotency evidently gets more complicated when we gather external data, especially if that data changes over time: Even if our code is clean, we may still get different results every time it runs. That's a topic for a future lab note!</p>
+
+</div>
+</div>
+</div>
+
+<div class="sidebar">
+<div class="pad2y limiter content">
+  <ul>
+ 
+ <li>
+    <time class="published" datetime="2021-06-22T00:00:00+02:00">
+      Tue 22 June 2021
+    </time>
+    </li>
+<!--         <address class="vcard author">
+      By           <a class="url fn" href="/author/pascal-jurgens.html">Pascal Jürgens</a>
+    </address>
+ -->
+    <li>
+        Category <a href="/category/notes.html">notes</a>
+        </li>
+    <li>
+        Tags
+            <a href="/tag/architecture.html">architecture</a>
+            <a href="/tag/python.html">Python</a>
+            <a href="/tag/r.html">R</a>
+        </li>
+  </ul>
+
+</div>
+</div>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

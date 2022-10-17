@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>A Trifle - How to fix transparency for online platforms</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <meta content="width=device-width,minimum-scale=1" name="viewport">
+
+
+
+
+    <meta name="tags" content="apis" />
+    <meta name="tags" content="intermediaries" />
+
+
+<link rel="stylesheet" href="/theme/css/pygment.css" />
+
+<style>
+
+  :root {
+    --mono-font: "Fira Code", Menlo, San Francisco Mono, Monaco, "Consolas", "Lucida Console", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+    --sans-font: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif
+  }
+
+  body {
+    /*margin: 0 auto;*/
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5;
+    font-size: 1rem;
+    font-family: var(--sans-font)
+  }
+
+  pre {background: #f8f9fa; padding: 10px;white-space: pre-wrap;word-break: keep-all}
+  code {background: #f8f9fa;}
+
+
+  .only-print {
+    display: none
+  }
+
+  a {
+    /*color: #006d77;*/
+    color: #007bf2;
+    /*color: #8d99ae;*/
+    /*color: #000000;*/
+    /*background-color: #edf2f4;*/
+    /*padding: .3em;*/
+    padding: .2em .2em .2em 0em;
+    text-decoration-skip-ink: auto;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #006d77;
+    background-color: #edf2f4;
+    /*text-decoration: underline;*/
+    /*font-weight: 700;*/
+  }
+
+  ul {
+    margin: 1rem 0
+  }
+
+
+  ul ul {
+    margin: 0
+  }
+
+  /*p {padding: 0; margin: 0;}*/
+  p {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  h3 {
+    padding: 0 0 20px 0;
+    margin: 0;
+  }
+
+  h4 {
+    margin: 30px 0 0 0;
+  }
+
+  .small,
+  small {
+    font-size: 14px
+  }
+
+  body,
+  h1 a {
+    color: #111
+  }
+
+  .active a {
+    font-weight: 800;
+  }
+
+  h1,
+  h2 {
+    margin-bottom: .5rem;
+    line-height: 1.25;
+    font-weight: 600
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    letter-spacing: .009em
+  }
+
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    clear: both;
+  }
+
+  ul.menu>li {padding-right: 1em;}
+
+  .limiter {
+    max-width: 500px;
+    padding-left: 20px;
+    padding-right: 20px;
+/*    margin-left: auto;
+    margin-right: auto*/
+  }
+
+  img {
+    max-width: 550px;
+    width: 100%;
+  }
+
+  .pad2y {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .main {
+  float: left;
+  background-color: #f0f0f0;
+  }
+
+  .sidebar {
+    float: left;
+  }
+
+  .writing {
+    display: grid;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    grid-template-columns: 1fr min-content
+  }
+
+  .writing a {
+    font-weight: 500;
+    letter-spacing: -.015em
+  }
+
+  .article {}
+
+  .note a {
+    font-weight: 500;
+    letter-spacing: -.015em
+  }
+
+  .writing a {
+    font-weight: 500;
+    letter-spacing: -.015em
+  }
+
+  .writing>div {}
+
+  .writing time {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*display: unset;*/
+/*    font-size: 0.9em;
+    padding: 0;
+    margin: 0;*/
+    /*font-size: 14px;*/
+    /*font-weight: 100px;*/
+    /*line-height: 1em;*/
+    /*background-color: #f8f9fa;*/
+    /*font-weight: 500;*/
+    text-align: right;
+    color: rgb(3, 27, 78);
+    /*padding: .2em;*/
+  }
+
+  .sidebar ul {
+    margin:  3em 0em;
+    list-style: none;
+  }
+
+  .header-wrap {}
+
+  .header-wrap {
+    /*border-bottom: 1px solid #eee;*/
+    /*background-color: #f8f9fa;*/
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+
+
+  @media screen and (max-width: 500px) {
+      .writing time {
+      display: none;
+    }  
+
+    .writing {
+      grid-template-columns: 1fr;
+      grid-row-gap: 5;
+    }
+    
+    .sitetitle {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .limiter {
+      width: auto;
+    }
+
+    .writing div {
+      white-space: normal;
+    }
+
+
+
+.sidebar {
+  clear: both;
+}
+
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    clear: both;
+  }
+  .sidebar li {
+    padding-right: 1em;
+  }
+  }
+
+
+/*---------------*/
+/*---------------*/
+
+</style>
+</head>
+
+
+<body class="post">
+<div style="position:relative">
+
+<nav class="header-wrap">
+            <div class="header nu limiter no-print">
+            <ul class="menu">
+            <li class="sitetitle">Pascal Jürgens</li>
+            <li><a href="/">News</a></li>
+            <li><a href="/pages/publications.html">Publications</a></li>
+            <!-- <li><a href="/notes">Notes</a></li> -->
+            <li><a href="/tags.html">Tags</a></li>
+            <li><a href="/pages/about.html">About</a></li></ul>
+</nav>
+
+
+<div class="main">
+
+<div class="pad2y limiter content">
+    <h3><a href="/fix-apis.html" rel="bookmark"
+         title="Permalink to How to fix transparency for online platforms">How to fix transparency for online platforms</a></h3>
+    <div class="nu">
+    <p>(Status: Draft)</p>
+<p>Online platforms such as social networking sites (also called intermediaries) present regulators with a guardian knot that seems to have no winning solution. States are bound to safeguard citizens, public debate and economic freedoms; they therefore cannot simply implement harsh measures favoring one of the three sides.</p>
+<h4>Regulating platforms</h4>
+<p>At the same time, the size of platform corporations and growing number of evident problematic anecdotes make it hard to remain inactive. So governments reach for strategies that are often rooted in their own regulatory history. Among the nuanced approaches, three major models are seriously considered:</p>
+<ul>
+<li>
+<p>Full regulation (as in: child pornography, libel, copyright)<br>
+Platforms are bound immediately by law and must implement visibility actions - e.g. hiding, showing, removing, emphasizing, de-emphasizing of content.</p>
+</li>
+<li>
+<p>Self-regulation (as in: community standards)<br>
+Platforms implement their own guidelines for handling content and exercise autonomous control.</p>
+</li>
+<li>
+<p>Regulated self-regulation (as in: German hate speech regulation)<br>
+Platforms are bound to implement content moderation following a state-mandated framework. The actual execution of content moderation is performed by the platform with some (often considerable) leeway in case-by-case decisions.</p>
+</li>
+</ul>
+<p>Each of these approaches has its drawbacks, since it is impossible to simultaneously offer strong protection and have a meaningful democratic legitimization. That's why indirect strategies have found substantial interest.</p>
+<h4>Indirect regulation</h4>
+<ul>
+<li>
+<p>Media literacy<br>
+Citizens play a pivotal multiplicative role in the regulatory diagram. Users with strong autonomy and cognitive resilience would free platforms as well as regulators from the burden of having to protect them. Susceptible individuals, on the other hand, would encourange stronger measures. The challenge with media literacy is that it is created neither quickly nor easily, and potential gains may be modest.</p>
+</li>
+<li>
+<p>Transparency<br>
+Transparency mandates that force the disclosure of e.g. modes of operation (how does an algorithm work) and/or platform data are an interesting regulatory approach, because they operate extremely indirect. Transparency by itself does not alleviate any problems and the impact on platforms is fairly clear and limited. What transparency does is bind platforms to societal norms by making it harder to obscure platform-internal events. It therefore enables societal actors to exert pressure on platforms, leaving the state out of the equation. That makes transparency one of the most promising approaches right now.</p>
+</li>
+</ul>
+<h4>A transparent black box?</h4>
+<p>At first glance, it seems obvious that increased transparency - for example laying open the precise mechanisms of algorithms - would help everyone. Users could better understand how the platform affects them, society could exert vigilant supervision, public debate could reflect upon the overall impact and platforms would benefit from an increase in trust.</p>
+<p>The past has shown, however, that platforms are vigorously opposed to such ideas - for reasons both good and hollow. Open sourcing a search algorithm, for example, has severe unintended consequences: Competitors could copy it, affecting enterpreneurial freedom. But worse, malevolent actors could make use of the information to create optimized attacks aimed at distorting the platform. Another issue is that the algorithm itself may be highly dynamic; its effects cannot be assessed without looking at real inputs - rendering the transparency inefficient.</p>
+<p>On the hollow side, platforms of course will want to avoid any kind of public scrutiny that could cause reputational damage. Even before the Cambridge Analytica-fiasco, platform corporations have been acutely aware of the dangerous international mix of political demands that are levied against them, and have reacted with political and legal hardening.</p>
+<h4>The fix</h4>
+<p>So what's my proposal to fix this mess? My suggestion is pretty simple:</p>
+<blockquote>
+<p>Platforms, don't create intransparent secret API access for elite institutions.<br>
+Instead, whitelist universities for browser-based access. Let them see all the public pages in any quantity they want.</p>
+</blockquote>
+<p>Why do I think this is a good idea? Let me explain. Current attempts to enable transparency try to circumvent the dangers of fully opening up: They try to limit the amount of personal data, for example, that is exposed and may be misused, as was the case with Cambridge Analytica. So far, they also rely on vetting processes that grant special access to individuals or institutions. Social Science One is one example of an initiative that sought to bring scientists and Facebook together to enable large-scale research on the platform.</p>
+<p>Such attempts are noble, but have been plagued by numerous problems, as researchers such as <a href="https://medium.com/@Snurb/facebook-research-data-18662cf2cacb">Axel Bruns</a> and <a href="https://odum.unc.edu/event/sss-freelon/">Deen</a> <a href="https://socialmediaandpolitics.org/53-digital-methods-post-api-era-deen-freelon/">Freelon</a> have shown. Self-censorship may prevent scholars from pursuing challenging questions; institutional matthew effects disadvantage non-US institutions, and the data that is provided excludes some publicly available information, such as the names of commenting users.</p>
+<p><strong>My proposal</strong> makes all of this much simpler. Instead of creating a separate, complex and again intransparent means of access, platforms should simply take what they already have - the plain display of information that is visible to everyone in the world in their browser - and give universities unrestricted access to it (for reading, not posting). So far, technical measures prevent anyone from opening too many pages on Facebook in a short time frame, for example. After so many pages, we see the well-known captchas to make sure that we "are human". </p>
+<p>The beauty of this proposal is that it does not create any additional information channels, ensuring that no additional privacy risks are created. Any information that would be accessible through such unencumbered access would also be available through, for example, a wide-scale network of individual computers. If Facebook were to drop automated throttling mechanisms for university computers, researchers could measure precisely what they are interested in: The publicly visible ecosystem of public information and public debate. At the same time, they would not gain any access that was not existent before.</p>
+<p>It remains important to investigate and discuss research questions that would not be covered by such a measure, but I expect that it would take a lot of pressure out of the debate, and also severely empower civic society's capability of monitoring what is going on online.</p>
+
+</div>
+</div>
+</div>
+
+<div class="sidebar">
+<div class="pad2y limiter content">
+  <ul>
+ 
+ <li>
+    <time class="published" datetime="2021-06-23T00:00:00+02:00">
+      Wed 23 June 2021
+    </time>
+    </li>
+<!--         <address class="vcard author">
+      By           <a class="url fn" href="/author/pascal-jurgens.html">Pascal Jürgens</a>
+    </address>
+ -->
+    <li>
+        Category <a href="/category/notes.html">notes</a>
+        </li>
+    <li>
+        Tags
+            <a href="/tag/apis.html">apis</a>
+            <a href="/tag/intermediaries.html">intermediaries</a>
+        </li>
+  </ul>
+
+</div>
+</div>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>
