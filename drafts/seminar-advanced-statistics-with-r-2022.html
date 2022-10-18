@@ -280,7 +280,7 @@
     <h3><a href="/drafts/seminar-advanced-statistics-with-r-2022.html" rel="bookmark"
          title="Permalink to Seminar: Advanced Statistics with R (2022)">Seminar: Advanced Statistics with R (2022)</a></h3>
     <div class="nu">
-    <p>Just like last year, I've taught a short two-day block seminar on <a href="http://localhost:8000/seminar-advanced-statistics-with-r.html">advanced social science using R</a> at the University of Zurich.</p>
+    <p>Just like last year, I've taught a short two-day block seminar on <a href="seminar-advanced-statistics-with-r.html">advanced social science using R</a> at the University of Zurich.</p>
 <p>The overall composition remained similar, covering:</p>
 <ul>
 <li>Basic R syntax (strictly tidyverse)</li>
@@ -288,7 +288,9 @@
 <li>A bit of text analysis (though less than before, skipping quanteda and LDA/stm)</li>
 <li>AI for social science</li>
 </ul>
-<p>Looking back, it is quite interesting to compare my own assessment of the role of AI in social science and the trajectory of its development. When I taught my first AI-related course four years ago, I did not consider deep learning to be useful for the typical social scientist in practical work. It was a moonshot that some methods-affine people would want to risk, with unclear outcome.</p>
+<p>Looking back, it is quite interesting to compare my own assessment of the role of AI in social science and the trajectory of its development. When I taught my first AI-related course four years ago, I did not consider deep learning to be a good strategic choice for the typical social scientist in practical work. It was a moonshot that some methods-affine people would want to risk, with unclear outcome, but not something that could be used in practice.</p>
+<p>This assessment has reversed much more quickly than I thought: Today, fine tuning a transformer takes a few lines of code with <a href="https://github.com/ThilinaRajapakse/simpletransformers">simpletransformers</a> in python or with the <a href="https://www.r-text.org/index.html">text package</a> in R. Setting up the required libraries and drivers is still a pain (especially thanks to the disaster that CUDA versioning, reticulate and conda are), but that's solvable (e.g. through online notebooks or docker containers).</p>
+<p>So as of today, I'd say that if social scientists have a problem that can be modeled using neural networks, it's somewhat negligent <strong>not</strong> to use them. Bag of words does have some use cases that remain, but they <a href="https://twitter.com/mscharkow/status/1580581589850894336">are shrinking</a>.</p>
 
 </div>
 </div>
